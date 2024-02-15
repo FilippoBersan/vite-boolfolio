@@ -7,6 +7,7 @@ export default {
 <template>
   <main>
     <div>Main</div>
+    <PostsCard></PostsCard>
   </main>
 </template>
 

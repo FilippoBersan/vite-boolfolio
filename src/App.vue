@@ -2,6 +2,7 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
+import PostsCard from './components/PostsCard.vue';
 import AppFooter from './components/AppFooter.vue';
 export default {
   name: 'Boolfolio',
@@ -18,6 +19,7 @@ export default {
     AppHeader,
     AppFooter,
     AppMain,
+    PostsCard,
   },
   methods: {
     getPosts() {
@@ -40,7 +42,8 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain :posts="posts" />
+  <AppMain></AppMain>
+  <PostsCard :posts="posts"></PostsCard>
   <AppFooter />
 </template>
 
