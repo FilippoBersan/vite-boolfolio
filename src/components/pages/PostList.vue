@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       currentPage: 1,
+      responseData: {},
       posts: [],
       baseUrl: 'http://127.0.0.1:8001',
       apiUrls: {
@@ -15,14 +16,27 @@ export default {
   methods: {
     getPosts() {
       axios
-        .get(this.baseUrl + this.apiUrls.posts)
+        .get(this.baseUrl + this.apiUrls.posts, {
+          params: {
+            page: this.currentPage,
+          },
+        })
         .then((response) => {
-          console.log(response);
-          this.posts = response.data.results.data;
+          this.responseData = response.data;
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+    nextPage() {
+      console.log('next');
+      this.currentPage++;
+      this.getPosts();
+    },
+    prevPage() {
+      console.log('prev');
+      this.currentPage--;
+      this.getPosts();
     },
   },
   created() {
@@ -38,7 +52,7 @@ export default {
   <div class="container py-4">
     <h1>I nostri Projects</h1>
     <div class="row mt-4">
-      <div class="col col-md-4 g-4" v-for="post in posts">
+      <div class="col col-md-4 g-4" v-for="post in responseData.results?.data">
         <div class="card">
           <!-- <img src="..." class="card-img-top" alt="..." /> -->
           <div class="card-body">
@@ -51,5 +65,23 @@ export default {
         </div>
       </div>
     </div>
+    <nav class="my-5">
+      <ul class="d-flex justify-content-between list-unstyled">
+        <li
+          class="btn btn-primary"
+          @click="prevPage"
+          v-show="responseData.results?.prev_page_url"
+        >
+          Previous
+        </li>
+        <li
+          class="btn btn-secondary"
+          @click="nextPage"
+          v-show="responseData.results?.first_page_url"
+        >
+          Next
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
