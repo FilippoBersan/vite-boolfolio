@@ -42,8 +42,9 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain></AppMain>
-  <PostsCard :posts="posts"></PostsCard>
+  <!-- <AppMain></AppMain> -->
+  <!-- <PostsCard :posts="posts"></PostsCard> -->
+  <router-view></router-view>
   <AppFooter />
 </template>
 
