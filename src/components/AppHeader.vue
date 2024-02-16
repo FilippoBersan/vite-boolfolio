@@ -10,9 +10,9 @@ export default {
       <div>logo</div>
       <nav>
         <ul class="list-unstyled m-0 p-0 gap-2 d-flex">
-          <li>blog</li>
-          <li>blog</li>
-          <li>blog</li>
+          <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+          <li><router-link :to="{ name: 'posts' }">Blog</router-link></li>
+          <li><router-link :to="{ name: 'about' }">About</router-link></li>
         </ul>
       </nav>
     </div>
