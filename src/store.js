@@ -8,7 +8,7 @@ const store = reactive({
     },
   },
   posts: {
-    // searchKey: null,
+    searchKey: null,
   },
 });
 

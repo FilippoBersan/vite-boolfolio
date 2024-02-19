@@ -17,12 +17,14 @@ export default {
   components: {
     PostSearch,
   },
+
   methods: {
     getPosts() {
       axios
         .get(this.baseUrl + this.apiUrls.posts, {
           params: {
             page: this.currentPage,
+            key: this.store,
           },
         })
         .then((response) => {
@@ -55,7 +57,7 @@ export default {
   </div>
   <div class="container py-4">
     <h1>I nostri Projects</h1>
-    <PostSearch></PostSearch>
+    <PostSearch @search-post="getPosts()" />
     <div class="row mt-4">
       <div class="col col-md-4 g-4" v-for="post in responseData.results?.data">
         <div class="card">
