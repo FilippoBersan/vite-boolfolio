@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import PostSearch from './PostSearch.vue';
 export default {
   name: 'PostList',
   data() {
@@ -12,6 +13,9 @@ export default {
         posts: '/api/posts',
       },
     };
+  },
+  components: {
+    PostSearch,
   },
   methods: {
     getPosts() {
@@ -51,6 +55,7 @@ export default {
   </div>
   <div class="container py-4">
     <h1>I nostri Projects</h1>
+    <PostSearch></PostSearch>
     <div class="row mt-4">
       <div class="col col-md-4 g-4" v-for="post in responseData.results?.data">
         <div class="card">
